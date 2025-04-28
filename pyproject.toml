@@ -1,0 +1,34 @@
+[project]
+name = "voice-finder"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ccompiler>=0.9.0",
+    "datasets>=3.3.2",
+    "langdetect>=1.0.9",
+    "lightning>=2.5.0.post0",
+    "llvmlite>=0.44.0",
+    "scipy>=1.15.2",
+    "seaborn>=0.13.2",
+    "setuptools>=75.8.2",
+    "sounddevice>=0.5.1",
+    "speechbrain>=1.0.2",
+    "tensorboard>=2.19.0",
+    "torch>=2.6.0",
+    "torchaudio>=2.6.0",
+    "transformers>=4.49.0",
+    "zarr>=3.0.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "datasets>=3.3.2",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.1",
+    "numpy==2.1.0",
+    "pandas>=2.2.3",
+    "ruff>=0.9.10",
+    "umap"
+]
