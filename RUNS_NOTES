@@ -9,3 +9,24 @@
     number_nxent_augmentations: 0
     triplet_augmentations: []
     number_triplet_augmentations: 0
+    
+    Evals:
+        voxceleb2:
+            Average same distance:	0.7982507944107056
+            Average different distance:	1.1486133337020874
+            Average top-5 match rate:	0.15028221905231476
+        CommonVoiceTestSet:
+            Average same distance:	0.5353420972824097
+            Average different distance:	1.357340931892395
+            Average top-5 match rate:	0.9547846913337708
+
+
+
+2. lightning_logs/version_72:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.0
+    gendered: True
+    nxent_augmentations: []
+    number_nxent_augmentations: 0
+    triplet_augmentations: []
+    number_triplet_augmentations: 0
