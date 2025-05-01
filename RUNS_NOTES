@@ -1,0 +1,11 @@
+
+
+
+1. lightning_logs/version_72:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.0
+    gendered: False
+    nxent_augmentations: []
+    number_nxent_augmentations: 0
+    triplet_augmentations: []
+    number_triplet_augmentations: 0
