@@ -22,11 +22,50 @@
 
 
 
-2. lightning_logs/version_72:
+2. lightning_logs/version_73:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
     self_supervised_loss_weight: 0.0
     gendered: True
     nxent_augmentations: []
     number_nxent_augmentations: 0
+    triplet_augmentations: []
+    number_triplet_augmentations: 0
+
+    Evals:
+        voxceleb2:
+            Average same distance:	0.8305940628051758
+            Average different distance:	1.1583967208862305
+            Average top-5 match rate:	0.11688616871833801
+        CommonVoiceTestSet:
+            Average same distance:	0.49823856353759766
+            Average different distance:	1.3514440059661865
+            Average top-5 match rate:	0.9040669798851013
+
+3. lightning_logs/version_74:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.5
+    gendered: False
+    nxent_augmentations: []
+    number_nxent_augmentations: 3
+    triplet_augmentations: []
+    number_triplet_augmentations: 0
+
+    Evals:
+        voxceleb2:
+            Average same distance:	0.9226334691047668
+            Average different distance:	1.249332308769226
+            Average top-5 match rate:	0.14240357279777527
+        CommonVoiceTestSet:
+            Average same distance:	0.549011766910553
+            Average different distance:	1.3819615840911865
+            Average top-5 match rate:	0.9389951825141907
+
+    
+4. lightning_logs/version_75:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.5
+    gendered: True
+    nxent_augmentations: []
+    number_nxent_augmentations: 3
     triplet_augmentations: []
     number_triplet_augmentations: 0
