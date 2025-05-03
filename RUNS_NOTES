@@ -61,7 +61,7 @@
             Average top-5 match rate:	0.9389951825141907
 
     
-4. lightning_logs/version_75:
+4. lightning_logs/version_76:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
     self_supervised_loss_weight: 0.5
     gendered: True
@@ -69,3 +69,26 @@
     number_nxent_augmentations: 3
     triplet_augmentations: []
     number_triplet_augmentations: 0
+    
+    Evals:
+        voxceleb2:
+            Average same distance:	0.9181818962097168
+            Average different distance:	1.2146153450012207
+            Average top-5 match rate:	0.11523988842964172
+        CommonVoiceTestSet:
+            Average same distance:	0.549724817276001
+            Average different distance:	1.379778504371643
+            Average top-5 match rate:	0.9098085761070251
+
+5. lightning_logs/version_77:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.5
+    gendered: False
+    nxent_augmentations: []
+    number_nxent_augmentations: 1
+    triplet_augmentations: []
+    number_triplet_augmentations: 0
+
+    Evals:
+        voxceleb2:
+        CommonVoiceTestSet:
