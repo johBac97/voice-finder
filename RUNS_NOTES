@@ -148,4 +148,23 @@
 
     Evals:
         voxceleb2:
+            Average same distance:	0.8363732099533081
+            Average different distance:	1.1684541702270508
+            Average top-5 match rate:	0.14828315377235413
+        CommonVoiceTestSet:
+            Average same distance:	0.5543740391731262
+            Average different distance:	1.3677105903625488
+            Average top-5 match rate:	0.942105233669281
+
+9. lightning_logs/version_81:
+    effective_batch_size: 32 * 4 (4 audio tracks per sample)
+    self_supervised_loss_weight: 0.0
+    gendered: False
+    nxent_augmentations: []
+    number_nxent_augmentations: 0
+    triplet_augmentations: []
+    number_triplet_augmentations: 1
+
+    Evals:
+        voxceleb2:
         CommonVoiceTestSet:
