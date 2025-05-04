@@ -12,13 +12,13 @@
     
     Evals:
         voxceleb2:
-            Average same distance:	0.7982507944107056
-            Average different distance:	1.1486133337020874
-            Average top-5 match rate:	0.15028221905231476
+            Average same distance:	0.7969647645950317
+            Average different distance:	1.1481329202651978
+            Average top-5 match rate:	0.2315772920846939
         CommonVoiceTestSet:
-            Average same distance:	0.5353420972824097
-            Average different distance:	1.357340931892395
-            Average top-5 match rate:	0.9547846913337708
+            Average same distance:	0.5375065207481384
+            Average different distance:	1.3570765256881714
+            Average top-5 match rate:	0.9832535982131958
 
 
 
@@ -33,13 +33,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.8305940628051758
-            Average different distance:	1.1583967208862305
-            Average top-5 match rate:	0.11688616871833801
+            Average same distance:	0.831026017665863
+            Average different distance:	1.1586556434631348
+            Average top-5 match rate:	0.18085606396198273
         CommonVoiceTestSet:
-            Average same distance:	0.49823856353759766
-            Average different distance:	1.3514440059661865
-            Average top-5 match rate:	0.9040669798851013
+            Average same distance:	0.49425002932548523
+            Average different distance:	1.3515329360961914
+            Average top-5 match rate:	0.9617224931716919
 
 3. lightning_logs/version_74:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -52,13 +52,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.9226334691047668
-            Average different distance:	1.249332308769226
-            Average top-5 match rate:	0.14240357279777527
+            Average same distance:	0.9204773902893066
+            Average different distance:	1.2490906715393066
+            Average top-5 match rate:	0.21566320955753326
         CommonVoiceTestSet:
-            Average same distance:	0.549011766910553
-            Average different distance:	1.3819615840911865
-            Average top-5 match rate:	0.9389951825141907
+            Average same distance:	0.5502979755401611
+            Average different distance:	1.381698489189148
+            Average top-5 match rate:	0.9762360453605652
 
     
 4. lightning_logs/version_76:
@@ -72,13 +72,13 @@
     
     Evals:
         voxceleb2:
-            Average same distance:	0.9181818962097168
-            Average different distance:	1.2146153450012207
-            Average top-5 match rate:	0.11523988842964172
+            Average same distance:	0.9163250923156738
+            Average different distance:	1.2147737741470337
+            Average top-5 match rate:	0.17615239322185516
         CommonVoiceTestSet:
-            Average same distance:	0.549724817276001
-            Average different distance:	1.379778504371643
-            Average top-5 match rate:	0.9098085761070251
+            Average same distance:	0.5478307604789734
+            Average different distance:	1.3798168897628784
+            Average top-5 match rate:	0.9562998414039612
 
 5. lightning_logs/version_77:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -91,13 +91,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.907544732093811
-            Average different distance:	1.2474855184555054
-            Average top-5 match rate:	0.13664157688617706
+            Average same distance:	0.9071799516677856
+            Average different distance:	1.247078537940979
+            Average top-5 match rate:	0.21346816420555115
         CommonVoiceTestSet:
-            Average same distance:	0.5661105513572693
-            Average different distance:	1.3863823413848877
-            Average top-5 match rate:	0.9406698346138
+            Average same distance:	0.568182110786438
+            Average different distance:	1.3862029314041138
+            Average top-5 match rate:	0.9768739938735962
 
 6. lightning_logs/version_78:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -110,13 +110,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.8987281322479248
-            Average different distance:	1.2387893199920654
-            Average top-5 match rate:	0.13734713196754456
+            Average same distance:	0.8982303142547607
+            Average different distance:	1.2393784523010254
+            Average top-5 match rate:	0.2078237682580948
         CommonVoiceTestSet:
-            Average same distance:	0.5737588405609131
-            Average different distance:	1.3746458292007446
-            Average top-5 match rate:	0.942105233669281
+            Average same distance:	0.5731867551803589
+            Average different distance:	1.3743832111358643
+            Average top-5 match rate:	0.9735246896743774
 
 7. lightning_logs/version_79:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -129,13 +129,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.8350392580032349
-            Average different distance:	1.1674517393112183
-            Average top-5 match rate:	0.1448729932308197
+            Average same distance:	0.8338095545768738
+            Average different distance:	1.166917085647583
+            Average top-5 match rate:	0.2255409061908722
         CommonVoiceTestSet:
-            Average same distance:	0.5621474981307983
-            Average different distance:	1.36837637424469
-            Average top-5 match rate:	0.9354066848754883
+            Average same distance:	0.5647246837615967
+            Average different distance:	1.36818265914917
+            Average top-5 match rate:	0.9732057452201843
 
 8. lightning_logs/version_80:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -148,13 +148,13 @@
 
     Evals:
         voxceleb2:
-            Average same distance:	0.8363732099533081
-            Average different distance:	1.1684541702270508
-            Average top-5 match rate:	0.14828315377235413
+            Average same distance:	0.837469220161438
+            Average different distance:	1.168468713760376
+            Average top-5 match rate:	0.22201316058635712
         CommonVoiceTestSet:
-            Average same distance:	0.5543740391731262
-            Average different distance:	1.3677105903625488
-            Average top-5 match rate:	0.942105233669281
+            Average same distance:	0.5543108582496643
+            Average different distance:	1.3676241636276245
+            Average top-5 match rate:	0.9768739938735962
 
 9. lightning_logs/version_81:
     effective_batch_size: 32 * 4 (4 audio tracks per sample)
@@ -167,4 +167,10 @@
 
     Evals:
         voxceleb2:
+            Average same distance:	0.7848557829856873
+            Average different distance:	1.1641656160354614
+            Average top-5 match rate:	0.2082941234111786
         CommonVoiceTestSet:
+            Average same distance:	0.473664253950119
+            Average different distance:	1.3266332149505615
+            Average top-5 match rate:	0.9717703461647034
