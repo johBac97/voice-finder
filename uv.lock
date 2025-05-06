@@ -3085,6 +3085,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "ccompiler" },
     { name = "datasets" },
+    { name = "jupyter" },
     { name = "langdetect" },
     { name = "lightning" },
     { name = "llvmlite" },
@@ -3116,6 +3117,7 @@ requires-dist = [
     { name = "ccompiler", specifier = ">=0.9.0" },
     { name = "datasets", specifier = ">=3.3.2" },
     { name = "datasets", marker = "extra == 'dev'", specifier = ">=3.3.2" },
+    { name = "jupyter", specifier = ">=1.1.1" },
     { name = "jupyter", marker = "extra == 'dev'", specifier = ">=1.1.1" },
     { name = "langdetect", specifier = ">=1.0.9" },
     { name = "lightning", specifier = ">=2.5.0.post0" },
