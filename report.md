@@ -70,25 +70,38 @@ The training objective combines two complementary loss functions:
 1. **A self-supervised contrastive loss** (`NT-Xent`) applied between augmented views of the same audio sample.
 2. **A supervised hard-mining triplet loss**, which uses speaker labels to construct difficult positive and negative examples.
 
+
 #### NT-Xent Loss
 
-The *Normalized Temperature-scaled Cross Entropy Loss* (NT-Xent), introduced in [SimCLR (Chen et al., 2020)](https://arxiv.org/abs/2002.05709), is a contrastive loss that encourages embeddings from augmented versions of the same input to be close, while pushing apart embeddings from other samples.
+The *Normalized Temperature-scaled Cross Entropy Loss* (NT-Xent), introduced in [SimCLR (Chen et al., 2020)](https://arxiv.org/abs/2002.05709), is a contrastive loss that encourages embeddings from augmented versions of the same input to be close in the embedding space, while pushing apart embeddings from different samples.
 
-Given a batch of $\( N \)$ input samples, we create two views of each sample via data augmentation, resulting in $\( 2N \)$ embeddings: $\( { z_1^i, z_2^i }_{i=1}^N \)$. Let $\( z_i \)$ be the anchor and $\( z_j \)$ be the positive pair, and all others in the batch are treated as negatives. The similarity is computed using cosine similarity scaled by a temperature parameter $\( \tau \)$:
+Given a batch of $\( N \)$ input samples, two augmented views are created for each sample, resulting in $\( 2N \)$ embeddings: $\( \{ z_1^i, z_2^i \}_{i=1}^N \)$. These are concatenated into a single batch of size $\( 2N \)$. For each anchor embedding $\( z_i \)$, there is a corresponding positive embedding $\( z_j \)$, while the remaining $\( 2N - 2 \)$ embeddings are treated as negatives.
+
+The cosine similarity between two embeddings is computed and scaled by a temperature parameter $\( \tau \)$:
 
 $$
 \text{sim}(z_i, z_j) = \frac{z_i^\top z_j}{\tau}
 $$
 
-The loss for each anchor $\( z_i \)$ is computed using cross-entropy over the similarity scores with respect to its positive pair:
+To normalize the similarity scores for contrastive learning, we define the softmax denominator (excluding the anchor itself) as:
 
 $$
-\mathcal{L}_{\text{NT-Xent}} = -\log \frac{\exp(\text{sim}(z_i, z_j))}{\sum_{k=1}^{2N} \mathbb{1}_{[k \ne i]} \exp(\text{sim}(z_i, z_k))}
+\mathcal{S}_i = \sum_{k=1}^{2N} \mathbb{1}_{[k \ne i]} \exp(\text{sim}(z_i, z_k))
 $$
 
-In this experiment, we use cosine similarity and $\( \tau = 0.5 \)$.
+The NT-Xent loss for a single positive pair \( (z_i, z_j) \) is then given by:
 
-This objective helps regularize the embedding space by enforcing consistency under small perturbations and improves generalization.
+$$
+\mathcal{L}_i = -\log \frac{\exp(\text{sim}(z_i, z_j))}{\mathcal{S}_i}
+$$
+
+Aggregating over all \( 2N \) embeddings, the total loss becomes:
+
+$$
+\mathcal{L}_{\text{NT-Xent}} = \frac{1}{2N} \sum_{i=1}^{2N} \mathcal{L}_i
+$$
+
+In this experiment, we set the temperature to $\( \tau = 0.5 \)$. This objective acts as a self-supervised regularizer, enforcing invariance under augmentation and improving the generalization of the learned embedding space.
 
 #### Hard-Mining Triplet Loss
 
