@@ -74,7 +74,7 @@ The training objective combines two complementary loss functions:
 
 The *Normalized Temperature-scaled Cross Entropy Loss* (NT-Xent), introduced in [SimCLR (Chen et al., 2020)](https://arxiv.org/abs/2002.05709), is a contrastive loss that encourages embeddings from augmented versions of the same input to be close, while pushing apart embeddings from other samples.
 
-Given a batch of \( N \) input samples, we create two views of each sample via data augmentation, resulting in \( 2N \) embeddings: \( \{ z_1^i, z_2^i \}_{i=1}^N \). Let \( z_i \) be the anchor and \( z_j \) be the positive pair, and all others in the batch are treated as negatives. The similarity is computed using cosine similarity scaled by a temperature parameter \( \tau \):
+Given a batch of $\( N \)$ input samples, we create two views of each sample via data augmentation, resulting in $\( 2N \)$ embeddings: $\( { z_1^i, z_2^i }_{i=1}^N \)$. Let $\( z_i \)$ be the anchor and $\( z_j \)$ be the positive pair, and all others in the batch are treated as negatives. The similarity is computed using cosine similarity scaled by a temperature parameter $\( \tau \)$:
 
 $$
 \text{sim}(z_i, z_j) = \frac{z_i^\top z_j}{\tau}
@@ -86,7 +86,7 @@ $$
 \mathcal{L}_{\text{NT-Xent}} = -\log \frac{\exp(\text{sim}(z_i, z_j))}{\sum_{k=1}^{2N} \mathbb{1}_{[k \ne i]} \exp(\text{sim}(z_i, z_k))}
 $$
 
-In this experiment, we use cosine similarity and \( \tau = 0.5 \).
+In this experiment, we use cosine similarity and $\( \tau = 0.5 \)$.
 
 This objective helps regularize the embedding space by enforcing consistency under small perturbations and improves generalization.
 
@@ -96,25 +96,25 @@ The second part of the training objective is a supervised *triplet loss* that us
 
 Each training sample is treated as an *anchor*. The *positive* is the most dissimilar embedding (i.e., largest distance) from the same speaker, and the *negative* is the most similar embedding (i.e., smallest distance) from a different speaker.
 
-For a given anchor \( a \), positive \( p \), and negative \( n \), the loss is defined as:
+For a given anchor $\( a \)$, positive $\( p \)$, and negative $\( n \)$, the loss is defined as:
 
 $$
 \mathcal{L}_{\text{triplet}} = \max(0, \, d(a, p) - d(a, n) + \alpha)
 $$
 
-where \( d(a, b) \) is the Euclidean distance between embeddings \( a \) and \( b \), and \( \alpha \) is the margin (set to 1.0 in this experiment).
+where $\( d(a, b) \)$ is the Euclidean distance between embeddings $\( a \)$ and $\( b \)$, and $\( \alpha \)$ is the margin (set to 1.0 in this experiment).
 
 This *online hard-mining* strategy forces the model to learn to discriminate between closely spaced speakers and adapt to the hardest cases within each mini-batch.
 
 #### Combined Loss
 
-The total training loss \( \mathcal{L} \) is a weighted combination of the two:
+The total training loss $\( \mathcal{L} \)$ is a weighted combination of the two:
 
 $$
 \mathcal{L} = \lambda \cdot \mathcal{L}_{\text{NT-Xent}} + \mathcal{L}_{\text{triplet}}
 $$
 
-where \( \lambda \) is a hyperparameter controlling the contribution of the NT-Xent loss (tuned during experiments).
+where $\( \lambda \)$ is a hyperparameter controlling the contribution of the NT-Xent loss (tuned during experiments).
 
 This joint objective aims to simultaneously benefit from both *self-supervised regularization* and *supervised discrimination*, leading to embeddings that are both stable and speaker-discriminative.
 
