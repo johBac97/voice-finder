@@ -80,7 +80,7 @@ $$
 \text{sim}(z_i, z_j) = \frac{z_i^\top z_j}{\tau}
 $$
 
-The loss for each anchor \( z_i \) is computed using cross-entropy over the similarity scores with respect to its positive pair:
+The loss for each anchor $\( z_i \)$ is computed using cross-entropy over the similarity scores with respect to its positive pair:
 
 $$
 \mathcal{L}_{\text{NT-Xent}} = -\log \frac{\exp(\text{sim}(z_i, z_j))}{\sum_{k=1}^{2N} \mathbb{1}_{[k \ne i]} \exp(\text{sim}(z_i, z_k))}
