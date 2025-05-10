@@ -84,8 +84,10 @@ The loss for each anchor $\( z_i \)$ is computed using cross-entropy over the si
 
 $$
 \mathcal{L}_{\text{NT-Xent}} = 
-
 $$
+
+asdiajdiaj
+
 $$
 -\log \frac{\exp(\text{sim}(z_i, z_j))}{\sum_{k=1}^{2N} \mathbb{1}_{[k \ne i]} \exp(\text{sim}(z_i, z_k))}
 $$
