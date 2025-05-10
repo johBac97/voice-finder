@@ -132,6 +132,32 @@ where $\( \lambda \)$ is a hyperparameter controlling the contribution of the NT
 This joint objective aims to simultaneously benefit from both *self-supervised regularization* and *supervised discrimination*, leading to embeddings that are both stable and speaker-discriminative.
 
 
+### Dataset Implementation
+
+To support speaker-aware training, a custom PyTorch-style dataset was implemented. Each dataset sample corresponds to a **unique speaker**, and when sampled, it returns a **fixed number of utterances** (in this case, four) from that speaker. The utterances are selected randomly from the set of available recordings for that speaker.
+
+The dataset is backed by a [Zarr](https://zarr.readthedocs.io/) archive containing precomputed Whisper features, attention masks, and metadata such as speaker ID and gender. At runtime, two types of data augmentations are optionally applied:
+
+- **Triplet augmentations**, applied to the original features to improve robustness of the supervised triplet loss.
+- **NT-Xent augmentations**, applied separately to generate perturbed versions of the features for contrastive learning.
+
+This design enables the training loop to compute both the NT-Xent loss and hard-mining triplet loss from a unified data structure while maintaining speaker-level grouping and efficient access.
+
+### Data Augmentations
+
+
+To improve generalization and robustness of the embedding model, several data augmentations were implemented and applied during training. Each augmentation operates on precomputed log-Mel spectrogram features and is randomly sampled during training:
+
+- **Gaussian Noise**: Adds i.i.d. Gaussian noise to all feature values. This simulates sensor or environment noise and encourages stability under small perturbations.
+
+- **Time Masking**: Randomly selects a temporal segment within the input and replaces it with noise. This simulates dropouts or occlusions in time, similar to SpecAugment.
+
+- **Frequency Masking**: Randomly selects a frequency band and replaces it with noise. This forces the model to rely on broader frequency context and is also inspired by SpecAugment.
+
+- **Low-Frequency Noise**: Adds structured noise to the lowest frequency bands only, emulating interference such as background hum or reverberation in voice channels.
+
+Each augmentation returns a modified version of the features and leaves the attention mask untouched. They can be applied independently or in combination, both for contrastive (NT-Xent) and supervised (triplet) learning objectives.
+
 
 ## Results
 
