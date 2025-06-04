@@ -2,7 +2,7 @@
 
 This repo provides code to train a Voice Speaker Embedding Model. The model takes as input an audio recording an provides an embedding vector that caputures the speakers identity. A use case for such a model could be a speaker identification system or voice similarity search.
 
-For a full report of the research into creating this model see the (report)[report.md].
+For a full report of the research into creating this model see the [report](report.md).
 
 ## Code
 
