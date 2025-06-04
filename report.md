@@ -161,9 +161,108 @@ Each augmentation returns a modified version of the features and leaves the atte
 
 ## Results
 
+### Training Runs
+
+Below are the results of the training runs. The Augmentations have been abbreviated as follows:
+
+* GN : Guassian Noise
+* TM : Time Mask
+* FM : Frequence Mask
+* LFN : Low Frequency Noise
+
+| Run Name | Effective Batch Size | Self-Supervised Loss Weight | Gendered | # NxEnt Augmentations | # Triplet Augmentations | NxEnt Augmentations     | Triplet Augmentations |
+|----------|----------------------|-----------------------------|----------|------------------------|--------------------------|--------------------------|------------------------|
+| Run 1    | 32 * 4               | 0.0                         | False    | 0                      | 0                        | []                       | []                     |
+| Run 2    | 32 * 4               | 0.0                         | True     | 0                      | 0                        | []                       | []                     |
+| Run 3    | 32 * 4               | 0.5                         | False    | 3                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 4    | 32 * 4               | 0.5                         | True     | 3                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 5    | 32 * 4               | 0.5                         | False    | 1                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 6    | 32 * 4               | 0.1                         | False    | 1                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 7    | 32 * 4               | 0.025                       | False    | 1                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 8    | 32 * 4               | 0.025                       | False    | 3                      | 0                        | [GN, TM, FM, LFN]        | []                     |
+| Run 9    | 32 * 4               | 0.0                         | False    | 0                      | 1                        | []                       | []                     |
+| Run 10   | 32 * 4               | 0.025                       | False    | 1                      | 0                        | [GN]                     | []                     |
+
+### Metrics
+
+Here is the eval results of these training runs for the __Voxceleb2 en dev__ dataset.
+
+| run    | Average Same L2 Distance | Average Different L2 Distance | Top 1 Accuracy | Top 5 Accuracy |  Equal Error Rate  |
+|--------|-------------------|-------------------|----------------|----------------|-------|
+| run 1  | 0.7970            | 1.1481            | 0.1428         | 0.2316         | 0.1788 |
+| run 2  | 0.8310            | 1.1587            | 0.1066         | 0.1809         | 0.2117 |
+| run 3  | 0.9205            | 1.2491            | 0.1314         | 0.2157         | 0.1941 |
+| run 4  | 0.9163            | 1.2148            | 0.0985         | 0.1762         | 0.2310 |
+| run 5  | 0.9072            | 1.2471            | 0.1279         | 0.2135         | 0.1918 |
+| run 6  | 0.8982            | 1.2394            | 0.1239         | 0.2078         | 0.1821 |
+| run 7  | 0.8338            | 1.1669            | 0.1331         | 0.2255         | 0.1817 |
+| run 8  | 0.8375            | 1.1685            | 0.1331         | 0.2220         | 0.1857 |
+| run 9  | 0.7849            | 1.1642            | 0.1199         | 0.2083         | 0.1801 |
+| run 10 | 0.8152            | 1.1514            | 0.1421         | 0.2287         | 0.1820 |
 
 
+And here is the results for the runs for the __Common Voice 17 en dev__  dataset.
+
+| run       | Average Same L2 Distance | Average Different L2 Distance | Top 1 Accuracy | Top 5 Accuracy |  Equal Error Rate  |
+|-----------|-------------------|-------------------|----------------|----------------|-------|
+| run 1  | 0.5375            | 1.3571            | 0.9448         | 0.9833         | 0.0110 |
+| run 2  | 0.4943            | 1.3515            | 0.8968         | 0.9617         | 0.0176 |
+| run 3  | 0.5503            | 1.3817            | 0.9266         | 0.9762         | 0.0120 |
+| run 4  | 0.5478            | 1.3798            | 0.8882         | 0.9563         | 0.0187 |
+| run 5  | 0.5682            | 1.3862            | 0.9322         | 0.9769         | 0.0120 |
+| run 6  | 0.5732            | 1.3744            | 0.9187         | 0.9735         | 0.0128 |
+| run 7  | 0.5647            | 1.3682            | 0.9274         | 0.9732         | 0.0120 |
+| run 8  | 0.5543            | 1.3676            | 0.9321         | 0.9769         | 0.0130 |
+| run 9  | 0.4737            | 1.3266            | 0.9222         | 0.9718         | 0.0142 |
+| run 10 | 0.5456            | 1.3617            | 0.9413         | 0.9817         | 0.0105 |
+
+
+### Plots
+
+
+<table>
+  <tr>
+    <td><img src="resources/plots/run_1/common_voice_17_en_dev/distance_histograms.png" width="200px"></td>
+    <td><img src="resources/plots/run_1/voxceleb2_en_dev/distance_histograms.png" width="200px"></td>
+  </tr>
+  <tr>
+    <td align="center">Common Voice 17 en Dev</td>
+    <td align="center">Voxceleb2 en Dev</td>
+  </tr>
+</table>
+
+__Figure 1__ : Intera/inter embedding distances for the model trained in __run 1__.
+
+
+<table>
+  <tr>
+    <td><img src="resources/plots/run_4/common_voice_17_en_dev/distance_histograms.png" width="200px"></td>
+    <td><img src="resources/plots/run_4/voxceleb2_en_dev/distance_histograms.png" width="200px"></td>
+  </tr>
+  <tr>
+    <td align="center">Common Voice 17 en Dev</td>
+    <td align="center">Voxceleb2 en Dev</td>
+  </tr>
+</table>
+
+__Figure 2__ : Intera/inter embedding distances for the model trained in __run 4__.
+
+<table>
+  <tr>
+    <td><img src="resources/plots/run_10/common_voice_17_en_dev/distance_histograms.png" width="200px"></td>
+    <td><img src="resources/plots/run_10/voxceleb2_en_dev/distance_histograms.png" width="200px"></td>
+  </tr>
+  <tr>
+    <td align="center">Common Voice 17 en Dev</td>
+    <td align="center">Voxceleb2 en Dev</td>
+  </tr>
+</table>
+
+__Figure 3__ : Intera/inter embedding distances for the model trained in __run 10__.
 
 ## Conclusions
+
+
+
 
 
