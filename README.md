@@ -11,7 +11,7 @@ The code is in the form of jupyter notebooks, they are all located in the `noteb
 
 ## Installation
 
-The repository uses `uv` as a package manager. Follow the [instructions]() to install it. Then run the command,
+The repository uses `uv` as a package manager. Follow the [instructions](https://docs.astral.sh/uv/getting-started/installation/) to install it. Then run the command,
 
 ```
 uv sync --dev
@@ -22,5 +22,6 @@ to install the dependencies. Launch a jupyter instance using the command,
 ```
 uv run jupyter notebook --no-browser
 ```
+
 
 

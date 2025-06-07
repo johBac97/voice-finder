@@ -6,9 +6,6 @@ To train such model we use a robust pretrained audio encoder model and finetune 
 
 The contrastive learning approach leverages a hard-triplet mining technique to provide the most useful training examples for the model. Additionally, a regularizing self supervised learning objective is introduced using NT-xEnt loss between embeddings resulting from augmented and original input features. Evaluation is done using metrics like top5 retrieval accuracy, intra/inter-speaker distance and equal error rate.  
 
-TODO: Results
-
-
 ## Data
 
 The datasets used based on two widely used datasets: [Common Voice 17](https://huggingface.co/datasets/mozilla-foundation/common_voice_17_0) and [Voxceleb2](https://huggingface.co/datasets/ProgramComputer/voxceleb). 
@@ -260,8 +257,16 @@ __Figure 2__ : Intera/inter embedding distances for the model trained in __run 4
 
 __Figure 3__ : Intera/inter embedding distances for the model trained in __run 10__.
 
-## Conclusions
+## Analysis
 
+This project proved that it is possible to train an efficient voice speaker embedding model using a contrastive learning approach. The very high top 1 and top 5 retrieval accuracy on the test set of the Common Voice 17 en dataset proves that the trained model learns useful features to effectivly distinguish speakers. However, the impressive performance does not transfer well to the other Voxceleb2 en test set. This is likely due to the very differnt nature of the recordings in the two datasets. Common Voice 17 contains studio recordings with quiet surroundings and clear pronunciations. On the other hand, Voxceleb2 en contains audio tracks scraped from public videos on platforms such as youtube and often depicts real world celebrity interviews. Such interviews or often conducted on the street or in crowded areas with lots of background noise and other background speakers. The trained model struggles to capture speaker information as effectivly in this setting as in the studio setting. Still, a top 5 retrieval accuracy of ~20 % shows that the model captures some speaker information correctly and far outperforms a random baseline wich would result in a top-5 accuracy of less than 0.1 %. 
+
+Intrestingly, the addition of the self supervised loss does not increase retrieval accuracy on the test sets, if anything it decreases it. The idea with the self supervised loss is to allow the model to train on generating more robust embeddings, withstanding things such as noise and loss of signal. However, since the training objective is joint it also removes some focus from the triplet loss, which focuses on distinguishing speakers. To mitigate this the self supervised loss weight was lowered substantially in later experiments, but with similar results. It was thought that the self supervised loss would help especially for the very noisy test set Voxceleb2 en dev. The fact that it didn't leads to the suspicion that either 1. the noise parameters were not properly calibrated resulting in too hard of a subtask which just confused the model. 2. The augmentations used does not reflect realistic conditions and therefore doesn't improve model robustness. Given that the sub loss for the self supervised part of the training objective decreased steadily during training until reacing a steady state, i.e, meaning that the model was able to learn to complete the task, it seems that the second option is more likely. The augmentations used, Time Mask, Frequency Mask, Low Freuency Noise, Guassian Noise, are all standard augmentations but it seems that they do not properly reflect the kind of noise present in the test recordings. In the Voxceleb2 en dev dataset most noise comes from surrounding ambient city sounds like cars, car horns, background voices various harsh clanking sounds. In the next version of this work these types of noises should be modeled using augmentations.
+
+## Future Works
+
+1. Model real world noise using more advanced augmentations 
+2. Extend training dataset with samples recorded in noisy environments.
 
 
 
