@@ -12,6 +12,7 @@ dependencies = [
     "langdetect>=1.0.9",
     "lightning>=2.5.0.post0",
     "llvmlite>=0.44.0",
+    "scikit-learn>=1.7.0",
     "scipy>=1.15.2",
     "seaborn>=0.13.2",
     "setuptools>=75.8.2",
@@ -34,3 +35,10 @@ dev = [
     "ruff>=0.9.10",
     "umap"
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+eval="voice_finder.eval:main"
