@@ -15,10 +15,10 @@ from voice_finder import infer
 def __parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--model", type=str, default="checkpoints/run_10/hf_model3")
-    parser.add_argument("--number-samples", type=int, default=400)
+    parser.add_argument("--model", type=str, default="johbac/voice-embedder-base")
+    parser.add_argument("--number-samples", type=int, default=300)
 
-    parser.add_argument("--threshold", type=float, default=0.6)
+    parser.add_argument("--threshold", type=float, default=0.5)
     parser.add_argument("--output", type=Path, default=Path("output"))
 
     return parser.parse_args()
@@ -30,12 +30,16 @@ def main():
     model = AutoModel.from_pretrained(args.model)
     processor = AutoProcessor.from_pretrained(args.model)
 
-    dataset = load_dataset(
-        "MLCommons/peoples_speech",
-        "clean",
-        split="validation",
-        streaming=True,
-    ).shuffle(buffer_size=1000, seed=42)
+    dataset = (
+        load_dataset(
+            "MLCommons/peoples_speech",
+            "clean",
+            split="validation",
+            streaming=True,
+        )
+        .skip(1000)
+        .shuffle(buffer_size=1000, seed=42)
+    )
 
     batch_size = 100
     total_samples = 0

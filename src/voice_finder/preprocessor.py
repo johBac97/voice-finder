@@ -1,5 +1,6 @@
 import transformers
 import numpy as np
+from pathlib import Path
 import librosa
 
 import json
@@ -103,5 +104,9 @@ class VoiceEmbedderProcessor(
         config["sequence_length"] = self.sequence_length
         config["processor_class"] = self._processor_class
         config.pop("_processor_class")  # Inherited from self.feature_extractor
-        with open(f"{save_directory}/preprocessor_config.json", "w") as f:
+
+        save_directory = Path(save_directory)
+        save_directory.mkdir(parents=True, exist_ok=True)
+
+        with (save_directory / "preprocessor_config.json").open("w") as f:
             json.dump(config, f, indent=2)
