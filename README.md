@@ -28,6 +28,14 @@ This repository includes the `voice-finder` Python package, which is automatical
 
 A pretrained model, trained using this repository, is available on the Hugging Face Hub at [johbac/voice-embedder-base](https://huggingface.co/johbac/voice-embedder-base). This model was fine-tuned on the Common Voice 17 (English) Train split dataset to generate 256-dimensional speaker embeddings. Check out the [model card](https://huggingface.co/johbac/voice-embedder-base) for details on usage and performance.
 
+## Model Performance
+
+The pretrained model (`johbac/voice-embedder-base`, Run 10) excels on the Common Voice 17 (en) dev test set, achieving a **Top-1 Accuracy of 94.13%**, **Top-5 Accuracy of 98.17%**, and an **Equal Error Rate of 1.05%**. It performs best on clean, studio-quality audio, effectively distinguishing speakers with well-separated embeddings. Below is a plot showing the intra/inter speaker embedding distances for the model on this dataset, illustrating the clear separation between same-speaker and different-speaker embeddings.
+
+![Intra/Inter Speaker Embedding Distances for Run 10 on Common Voice 17 (en) Dev](resources/plots/run_10/common_voice_17_en_dev/distance_histograms.png)
+
+For full performance metrics across datasets, see the [model card](https://huggingface.co/johbac/voice-embedder-base).
+
 ## Running the Example Inference Script
 
 The `voice-finder` package includes an example inference script that demonstrates how to use the pretrained model for speaker clustering on the `MLCommons/peoples_speech` dataset. To run it:
