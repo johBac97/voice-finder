@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "umap-learn",
     "ccompiler>=0.9.0",
     "datasets>=3.3.2",
     "grip>=4.6.2",
@@ -42,4 +43,5 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-eval="voice_finder.eval:main"
+voice-finder-eval="voice_finder.eval:main"
+voice-finder-example="voice_finder.example_inference:main"

@@ -5,8 +5,11 @@ import librosa
 import json
 
 
-class VoiceEmbedderFeatureExtractor(transformers.SequenceFeatureExtractor):
+class VoiceEmbedderProcessor(
+    transformers.SequenceFeatureExtractor, transformers.ProcessorMixin
+):
     model_input_names = ["input_features", "attention_mask"]
+    _processor_class = "VoiceEmbedderProcessor"
 
     def __init__(
         self,
@@ -17,7 +20,12 @@ class VoiceEmbedderFeatureExtractor(transformers.SequenceFeatureExtractor):
         **kwargs,
     ):
         super().__init__(
-            *args, **kwargs, feature_size=80, sampling_rate=16000, padding_value=0.0
+            *args,
+            **kwargs,
+            feature_size=80,
+            sampling_rate=16000,
+            padding_value=0.0,
+            processor_class=self._processor_class,
         )
         self.sequence_length = sequence_length
         self.feature_extractor = (
@@ -33,6 +41,7 @@ class VoiceEmbedderFeatureExtractor(transformers.SequenceFeatureExtractor):
         **kwargs,
     ):
         target_sr = 16000
+        kwargs["return_attention_mask"] = kwargs.pop("return_attention_mask", True)
 
         is_single_audio = not isinstance(audio, (list, tuple))
         if is_single_audio:
@@ -90,8 +99,9 @@ class VoiceEmbedderFeatureExtractor(transformers.SequenceFeatureExtractor):
         )
 
     def save_pretrained(self, save_directory, **kwargs):
-        self.feature_extractor.save_pretrained(save_directory)
         config = self.feature_extractor.to_dict()
         config["sequence_length"] = self.sequence_length
+        config["processor_class"] = self._processor_class
+        config.pop("_processor_class")  # Inherited from self.feature_extractor
         with open(f"{save_directory}/preprocessor_config.json", "w") as f:
             json.dump(config, f, indent=2)

@@ -1,11 +1,11 @@
 import argparse
+import transformers
 import json
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import torch
 import librosa
-from voice_finder import VoiceEmbedder, VoiceEmbedderFeatureExtractor
 from sklearn.cluster import DBSCAN
 from pathlib import Path
 
@@ -27,9 +27,12 @@ def main():
     if not args.data.is_dir():
         raise ValueError("Data must be a path to a folder containing audio files.")
 
-    model = VoiceEmbedder.from_pretrained(args.model)
+    # model = VoiceEmbedder.from_pretrained(args.model)
 
-    feature_extractor = VoiceEmbedderFeatureExtractor.from_pretrained(args.model)
+    # feature_extractor = VoiceEmbedderFeatureExtractor.from_pretrained(args.model)
+
+    model = transformers.AutoModel.from_pretrained(args.model)
+    feature_extractor = transformers.AutoProcessor.from_pretrained(args.model)
 
     # device = "cuda" if torch.cuda.is_available() else "cpu"
     device = "cpu"
